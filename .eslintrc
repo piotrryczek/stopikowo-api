@@ -5,9 +5,10 @@
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "max-len": ["error", { "code": 200 }],
     "import/no-extraneous-dependencies": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "import/extensions": "never"
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "settings": {
     "import/resolver": {
       "node": {

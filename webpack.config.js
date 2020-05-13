@@ -1,21 +1,16 @@
-// const Dotenv = require('dotenv-webpack');
+const Dotenv = require('dotenv-webpack');
 const path = require('path');
 
 module.exports = {
   mode: 'development',
   target: 'node',
-  entry: ['@babel/polyfill', `${__dirname}/src/server.js`],
+  entry: `${__dirname}/src/server.ts`,
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.ts?$/,
+        use: 'ts-loader',
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-        resolve: {
-          extensions: ['.js', '.jsx'],
-        },
       },
     ],
   },
@@ -24,6 +19,13 @@ module.exports = {
       path: './.env',
     }),
   ],
+  resolve: {
+    extensions: ['.ts', '.js'],
+    modules: [
+      'node_modules',
+      path.resolve(__dirname, './src'),
+    ],
+  },
   output: {
     filename: 'app.js',
     path: path.resolve(__dirname, 'dist'),
