@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "start:dev": "NODE_PATH=./src nodemon",
-    "test": "jest --detectOpenHandles"
+    "start": "NODE_PATH=./src nodemon",
+    "test": "jest --detectOpenHandles",
+    "build:dev": "webpack --config webpack.development.js",
+    "build:prod": "webpack --config webpack.production.js"
   },
   "dependencies": {
     "@koa/cors": "^2.2.3",
