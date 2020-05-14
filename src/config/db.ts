@@ -3,12 +3,15 @@ import mongoose from 'mongoose';
 // Importing models
 // ...
 
-const connectionUrl = process.env.MONGO_CONNECTION;
+export const connectionUrl = `${process.env.MONGO_CONNECTION}/${process.env.MONGO_DATABASE}`;
 
-mongoose.connect(connectionUrl, {
+export const connectionSettings = {
   useNewUrlParser: true,
-  useCreateIndex: true,
   useUnifiedTopology: true,
-});
+  replicaSet: process.env.MONGO_REPLICA_SET,
+  serverSelectionTimeoutMS: 1500,
+};
+
+mongoose.connect(connectionUrl, connectionSettings);
 
 export default mongoose.connection;
