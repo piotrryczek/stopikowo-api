@@ -19,8 +19,5 @@
     "allowSyntheticDefaultImports": true,
     "typeRoots": ["node_modules/@types"],
     "declaration": false,
-  },
-  "exclude": [
-    "**/*.test.ts"
-  ]
+  }
 }
