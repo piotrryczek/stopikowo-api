@@ -1,22 +1,15 @@
-name: Node CI
+name: Production deploy
 
 on:
   push:
-    branches: [development, staging, master]
-  pull_request:
-    branches: [development, staging, master]
+    branches: [master]
 
 jobs:
-  test_and_build:
+  build_and_deploy_production:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.3.0
-        with:
-          mongodb-version: 4.0
-          mongodb-replica-set: test
       - uses: actions/setup-node@v1
         with:
           node-version: 12.x
@@ -26,18 +19,9 @@ jobs:
         run: yarn
         env:
           CI: true
-      - name: eslint
-        run: lint
-      - name: Tests
-        run: yarn test --exit
-        env:
-          CI: true
-          MONGO_CONNECTION: mongodb://localhost:27017
-          MONGO_DATABASE: test
-          MONGO_REPLICA_SET: test
-      - name: Build production
+      - name: Build Production
         run: yarn build:prod
-      - name: Deploy to Staging server
+      - name: Deploy to Production server
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
@@ -45,13 +29,13 @@ jobs:
           SOURCE: "dist/"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: "domains/stopikowo-staging.nero12.usermd.net/public_nodejs"
+          TARGET: "domains/${{ secrets.PRODUCTION_DOMAIN }}/public_nodejs"
       - name: Restart domain
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key : ${{ secrets.SERVER_SSH_KEY }}
-          script: devil www restart stopikowo-staging.nero12.usermd.net
+          script: devil www restart ${{ secrets.PRODUCTION_DOMAIN }}
       - name: Unfreezing query
-        run: curl http://stopikowo-staging.nero12.usermd.net/app/status
+        run: curl http://${{ secrets.PRODUCTION_DOMAIN }}/app/status

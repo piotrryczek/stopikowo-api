@@ -1,6 +1,7 @@
 node_modules
 .env
 development.env
+staging.env
 production.env
 yarn-error.log
 dist

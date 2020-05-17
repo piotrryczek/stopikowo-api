@@ -8,6 +8,7 @@
     "test": "mocha -r ts-node/register -r tsconfig-paths/register '**/*.test.ts' --timeout 5000",
     "lint": "eslint src/**/*.ts",
     "build:dev": "webpack --config webpack.development.js",
+    "build:staging": "webpack --config webpack.staging.js",
     "build:prod": "webpack --config webpack.production.js"
   },
   "dependencies": {

@@ -2,9 +2,9 @@ name: Node CI
 
 on:
   push:
-    branches: [development, staging, master]
+    branches: [staging, development, master]
   pull_request:
-    branches: [development, staging, master]
+    branches: [staging, development, master]
 
 jobs:
   test_and_build:
@@ -22,7 +22,7 @@ jobs:
           node-version: 12.x
       - name: Install yarn
         run: npm i -g yarn
-      - name: install app dependencies
+      - name: Install app dependencies
         run: yarn
         env:
           CI: true
