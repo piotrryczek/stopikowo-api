@@ -27,7 +27,7 @@ jobs:
         env:
           CI: true
       - name: Eslint
-        run: lint
+        run: yarn lint
       - name: Tests
         run: yarn test --exit
         env:
