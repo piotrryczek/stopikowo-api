@@ -2,9 +2,9 @@ name: Node CI
 
 on:
   push:
-    branches: [master, development]
+    branches: [staging, development, master]
   pull_request:
-    branches: [master, development]
+    branches: [staging, development, master]
 
 jobs:
   test_and_build:
@@ -22,10 +22,12 @@ jobs:
           node-version: 12.x
       - name: Install yarn
         run: npm i -g yarn
-      - name: install deps
+      - name: Install app dependencies
         run: yarn
         env:
           CI: true
+      - name: Eslint
+        run: yarn lint
       - name: Tests
         run: yarn test --exit
         env:
