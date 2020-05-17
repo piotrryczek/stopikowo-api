@@ -4,3 +4,4 @@ development.env
 production.env
 yarn-error.log
 dist
+package.lock.json
