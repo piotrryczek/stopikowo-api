@@ -21,6 +21,10 @@ jobs:
           CI: true
       - name: Build Production
         run: yarn build:prod
+        env:
+          JWT_SECRET: ${{ secrets.PRODUCTION_JWT_SECRET }}
+          MONGO_CONNECTION: ${{ secrets.PRODUCTION_MONGO_CONNECTION }}
+          MONGO_DATABASE: ${{ secrets.PRODUCTION_MONGO_DATABASE }}
       - name: Deploy to Production server
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
