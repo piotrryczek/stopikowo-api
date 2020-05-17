@@ -21,6 +21,10 @@ jobs:
           CI: true
       - name: Build Staging
         run: yarn build:staging
+        env:
+          JWT_SECRET: ${{ secrets.STAGING_JWT_SECRET }}
+          MONGO_CONNECTION: ${{ secrets.STAGING_MONGO_CONNECTION }}
+          MONGO_DATABASE: ${{ secrets.STAGING_MONGO_DATABASE }}
       - name: Deploy to Staging server
         uses: easingthemes/ssh-deploy@v2.0.7
         env:
