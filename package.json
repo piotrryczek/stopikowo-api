@@ -34,7 +34,7 @@
     "koa-static": "^5.0.0",
     "lodash": "^4.17.11",
     "mocha": "^7.1.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.9.13",
     "mongoose-auto-increment": "^5.0.1",
     "nodemon": "^1.18.10",
