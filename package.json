@@ -39,7 +39,7 @@
     "mongoose-auto-increment": "^5.0.1",
     "nodemon": "^1.18.10",
     "object.fromentries": "^2.0.0",
-    "qs": "^6.8.0",
+    "qs": "^6.9.7",
     "request": "^2.88.0",
     "supertest": "^4.0.2",
     "ts-loader": "^7.0.4",
